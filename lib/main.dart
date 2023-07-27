@@ -12,10 +12,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: ThemeData(),
+      debugShowCheckedModeBanner: false,
+      home: const Scaffold(
+        body: Center(
+          child: Text('Vitech Ecomm'),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
+// class Scaffold extends StatelessWidget {
+//   const Scaffold({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Text('Flutter Demo Home Page');
+//   }
+// }
