@@ -1,3 +1,6 @@
+import 'package:ecomm/constants/global_variables.dart';
+import 'package:ecomm/features/auth/screens/auth_screen.dart';
+import 'package:ecomm/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,15 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: Center(
-          child: Text('Vitech Ecomm'),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+          colorScheme: const ColorScheme.light(
+            primary: GlobalVariables.secondaryColor,
+          ),
+          appBarTheme: const AppBarTheme(
+            elevation: 0, //it removes something like shadow under the app bar.
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
         ),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: (settings) => generateRoute(settings),
+        home: const AuthScreen());
   }
 }
 
