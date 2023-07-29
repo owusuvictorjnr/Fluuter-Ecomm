@@ -1,3 +1,4 @@
+import 'package:ecomm/common/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/global_variables.dart';
@@ -20,6 +21,18 @@ class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +69,41 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
 
               if (_auth == Auth.signup)
-                Form(
-                  key: _signUpFormKey,
-                  child: const Column(
-                    
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: GlobalVariables.backgroundColor,
+                  child: Form(
+                    key: _signUpFormKey,
+                    child: Column(
+                      children: [
+                        // Name
+                        CustomTextField(
+                          controller: _nameController,
+                          hintText: 'Name',
+                          hintTetxt: 'Name',
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+
+                        // Email
+                        CustomTextField(
+                          controller: _emailController,
+                          hintText: 'Email',
+                          hintTetxt: 'Email',
+                        ),
+
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        // Password
+                        CustomTextField(
+                          controller: _emailController,
+                          hintText: 'Password',
+                          hintTetxt: 'Password',
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
