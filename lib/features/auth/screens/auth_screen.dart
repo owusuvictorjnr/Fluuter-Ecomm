@@ -1,3 +1,4 @@
+import 'package:ecomm/common/widget/custom_button.dart';
 import 'package:ecomm/common/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -42,12 +43,16 @@ class _AuthScreenState extends State<AuthScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
                 'Welcome to Vitech Ecomm',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
               ),
               ListTile(
+                tileColor: _auth == Auth.signup
+                    ? GlobalVariables.backgroundColor
+                    : GlobalVariables.greyBackgroundColor,
                 title: const Text(
                   'Create Account',
                   style: TextStyle(
@@ -83,9 +88,47 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintTetxt: 'Name',
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 10,
                         ),
 
+                        // Email
+                        CustomTextField(
+                          controller: _emailController,
+                          hintText: 'Email',
+                          hintTetxt: 'Email',
+                        ),
+
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        // Password
+                        CustomTextField(
+                          controller: _emailController,
+                          hintText: 'Password',
+                          hintTetxt: 'Password',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomButton(
+                          text: 'Sign up',
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+              // Sign in
+
+              if (_auth == Auth.signin)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: GlobalVariables.backgroundColor,
+                  child: Form(
+                    key: _signInFormKey,
+                    child: Column(
+                      children: [
                         // Email
                         CustomTextField(
                           controller: _emailController,
@@ -102,13 +145,21 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                           hintTetxt: 'Password',
                         ),
+                        const SizedBox(
+                          height: 13,
+                        ),
+                        CustomButton(
+                          text: 'Sign in',
+                          onTap: () {},
+                        ),
                       ],
                     ),
                   ),
                 ),
-
-              // Sign in
               ListTile(
+                tileColor: _auth == Auth.signin
+                    ? GlobalVariables.backgroundColor
+                    : GlobalVariables.greyBackgroundColor,
                 title: const Text(
                   'Sign in ',
                   style: TextStyle(
@@ -128,6 +179,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   },
                 ),
               )
+
+              // Sign in
             ], // Children
           ),
         ),
